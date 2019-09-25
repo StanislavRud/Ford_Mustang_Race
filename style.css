@@ -42,6 +42,34 @@ table {
 	border-spacing: 0;
 }
 
+.start {
+
+    width: 150px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: 0 0 0 -90px;
+    background-color: #2196f3;
+    padding: 10px;
+    border-radius: 10px;
+    border: 3px solid black;
+    z-index: 1;
+}
+
+.start p {
+    text-align: center;
+}
+
+.start:hover {
+    cursor: pointer;
+    box-shadow: 2px 2px 5px black;
+}
+
+.start:active {
+  box-shadow: 0 0 0 60px rgba(0,0,0,.05) inset;
+}
+
+
 .hide {
     display: none;
 }
@@ -57,6 +85,7 @@ table {
 }
 
 .gameArea {
+    display: none;
     width: 300px;
     height: 600px;
     height: 100vh;
