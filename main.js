@@ -1,7 +1,12 @@
+let level = +prompt('Выберите уровень сложности от 1 до 10', "1");
+
+
 const score = document.querySelector('.score'),
     start = document.querySelector('.start'),
     gameArea = document.querySelector('.gameArea'),
-    car = document.createElement('div');
+    car = document.createElement('div'),
+    music = document.querySelector('.music'),
+    player = document.querySelector('.Player');
 
 car.classList.add('car');
 
@@ -20,7 +25,7 @@ const keys = {
 const setting = {
     start: false,
     score: 0,
-    speed: 3,
+    speed: level,
     traffic: 3
 };
 
@@ -29,11 +34,16 @@ function getQuantityElements(heightElement) {
 }
 
 
+
 function startGame(){
     start.classList.add('hide');
     gameArea.style.display = 'block';
     score.style.display = 'block';
     gameArea.innerHTML = '';
+    music.src = '3.mp3';
+    player.load();
+    player.play();
+    
     
     
 
@@ -131,6 +141,9 @@ function moveEnemy (){
             setting.start = false;
             start.classList.remove('hide');
             start.innerHTML = 'GAME OVER<br>' + 'Click to start';
+            music.src = '2.mp3';
+            player.load();
+            player.play();
     
         }
 
