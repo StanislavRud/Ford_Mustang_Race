@@ -1,19 +1,25 @@
-let level = +prompt('Выберите уровень сложности от 1 до 10', "1");
-
-
 const score = document.querySelector('.score'),
     start = document.querySelector('.start'),
     gameArea = document.querySelector('.gameArea'),
     car = document.createElement('div'),
     music = document.querySelector('.music'),
     player = document.querySelector('.Player');
+    var level = '';
+
+
 
 car.classList.add('car');
 
 start.addEventListener('click', startGame);
-
 document.addEventListener('keydown', startRun);
 document.addEventListener('keyup', stopRun);
+
+function selected () {
+    let select = document.querySelector('.selectedDifficulty');
+    let check = select.options[select.selectedIndex].value;
+    return check;
+}
+ level = +selected();
 
 const keys = {
     ArrowUp: false,
@@ -21,13 +27,13 @@ const keys = {
     ArrowRight: false,
     ArrowLeft: false
 };
-
-const setting = {
+var setting = {
     start: false,
     score: 0,
     speed: level,
     traffic: 3
 };
+
 
 function getQuantityElements(heightElement) {
    return document.documentElement.clientHeight / heightElement + 1;
@@ -40,11 +46,11 @@ function startGame(){
     gameArea.style.display = 'block';
     score.style.display = 'block';
     gameArea.innerHTML = '';
-    music.src = '3.mp3';
-    player.load();
-    player.play();
-    
-    
+    // music.src = '3.mp3';
+    // player.load();
+    // player.play();
+
+
     
 
     for (let i = 0; i < getQuantityElements(100); i++) {
