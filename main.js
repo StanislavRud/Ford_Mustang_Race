@@ -4,7 +4,21 @@ const score = document.querySelector('.score'),
     car = document.createElement('div'),
     music = document.querySelector('.music'),
     player = document.querySelector('.Player');
-    var level = '';
+
+let setting = {
+    start: false,
+    score: 0,
+    speed: 1,
+    traffic: 3
+};
+
+function selected () {
+    let select = document.querySelector('.selectedDifficulty');
+    let check = select.options[select.selectedIndex].value;
+    return check;
+}
+
+
 
 
 
@@ -14,26 +28,12 @@ start.addEventListener('click', startGame);
 document.addEventListener('keydown', startRun);
 document.addEventListener('keyup', stopRun);
 
-function selected () {
-    let select = document.querySelector('.selectedDifficulty');
-    let check = select.options[select.selectedIndex].value;
-    return check;
-}
- level = +selected();
-
 const keys = {
     ArrowUp: false,
     ArrowDown: false,
     ArrowRight: false,
     ArrowLeft: false
 };
-var setting = {
-    start: false,
-    score: 0,
-    speed: level,
-    traffic: 3
-};
-
 
 function getQuantityElements(heightElement) {
    return document.documentElement.clientHeight / heightElement + 1;
@@ -42,10 +42,13 @@ function getQuantityElements(heightElement) {
 
 
 function startGame(){
+    setting.speed = +selected();
     start.classList.add('hide');
     gameArea.style.display = 'block';
     score.style.display = 'block';
     gameArea.innerHTML = '';
+
+
     // music.src = '3.mp3';
     // player.load();
     // player.play();
@@ -83,7 +86,7 @@ function startGame(){
 }
 
 function playGame (){
-    
+
     if (setting.start === true) {
         setting.score += setting.speed;
         score.innerHTML = 'SCORE<br>' + setting.score;
