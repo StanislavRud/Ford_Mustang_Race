@@ -42,14 +42,46 @@ table {
 	border-spacing: 0;
 }
 
-.start {
+* {
+    box-sizing: border-box;
+}
 
-    width: 150px;
+.selectDifficulty {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    margin: 0 0 0 -125px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    background-color: #2196f3;
+    padding: 10px;
+    border-radius: 10px;
+    border: 3px solid black;
+}
+
+.selectedDifficulty {
+    background-color: #0563af;
+    color: white;
+    padding: 12px;
+    margin-top: 10px;
+    /*width: 250px;*/
+    border: none;
+    font-size: 20px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    -webkit-appearance: button;
+    outline: none;
+}
+
+
+.start {
+    width: 250px;
     position: absolute;
     text-align: center;
     top: 50%;
     left: 50%;
-    margin: 0 0 0 -90px;
+    margin: 0 0 0 -125px;
     background-color: #2196f3;
     padding: 10px;
     border-radius: 10px;
@@ -58,7 +90,7 @@ table {
 }
 
 
-.start:hover {
+.start:hover, .selectedDifficulty:hover {
     cursor: pointer;
     box-shadow: 2px 2px 5px black;
 }
@@ -101,18 +133,26 @@ table {
 .score {
     display: none;
     position: absolute;
+    width:50%;
     top: 0;
-    left: 0;
     background: black;
-    width: 100%;
     padding: 1rem 0;
-    z-index: 10;
     color: white;
-    text-align: center;
+    text-align: left;
     font-family: sans-serif;
     font-weight: 500;
 }
 
-/* .music {
+.speed {
     display: none;
-} */
+    position: absolute;
+    width: 50%;
+    right: 0;
+    top: 0;
+    background: black;
+    padding: 1rem 0;
+    color: white;
+    text-align: right;
+    font-family: sans-serif;
+    font-weight: 500;
+}

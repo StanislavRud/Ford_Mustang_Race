@@ -10,7 +10,8 @@
 <body>
     <div class="game">
         <div class="score"></div>
-        <div class="selectDifficulty">
+        <div class="speed"></div>
+        <div class="selectDifficulty">Change Difficulty
             <select class="selectedDifficulty" onchange="selected()">
                 <option value="3">Easy</option>
                 <option value="5">Normal</option>
@@ -20,9 +21,7 @@
         <div class="start">Click to START Game</div>
         <div class="gameArea"></div>
         <div class="playMusic">
-                <audio class="Player" controls autoplay loop hidden>
-                    <source class="music" src="1.mp3" type="audio/mpeg">
-                </audio>
+                <audio class="music" src="1.mp3" controls autoplay loop hidden></audio>
         </div>
     </div>
 
