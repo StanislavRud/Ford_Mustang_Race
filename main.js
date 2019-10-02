@@ -13,6 +13,12 @@ let setting = {
     traffic: 3
 };
 
+function increaseSpeed() {
+    setInterval(() => {
+        setting.speed += 0.1;
+    }, 500);
+}
+
 function selected () {
     let select = document.querySelector('.selectedDifficulty');
     let check = select.options[select.selectedIndex].value;
@@ -46,7 +52,7 @@ function startGame(){
     music.src = '3.mp3';
     music.load();
     music.play();
-
+    increaseSpeed()
 
     for (let i = 0; i < getQuantityElements(100) + 1; i++) {
         const line = document.createElement('div');
@@ -83,17 +89,12 @@ function playGame (){
 
 
     if (setting.start === true) {
-        setting.score += setting.speed;
 
-        setting.speed = +selected();
 
-        let a = function gearup() {
-            var b = setting.speed + 1;
-            return b;
-        };
-        setting.speed = setInterval(a(), 10000);
-        score.innerHTML = 'SCORE:' + setting.score;
-        levelSpeed.innerHTML = 'SPEED:' + setting.speed * 10 + 'Km/h';
+        let sp = setting.speed;
+        setting.score += setting.speed * 100;
+        score.innerHTML = 'SCORE:' + setting.speed;
+        levelSpeed.innerHTML = 'SPEED:' + sp.toFixed() * 10 + 'Km/h';
         if (setting.speed*10 < 50){
             levelSpeed.style.color = 'green';
         }
