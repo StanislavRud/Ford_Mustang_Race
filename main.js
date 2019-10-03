@@ -3,7 +3,7 @@ const score = document.querySelector('.score'),
     gameArea = document.querySelector('.gameArea'),
     car = document.createElement('div'),
     music = document.querySelector('.music'),
-    // player = document.querySelector('.Player'),
+    stopLight = document.createElement('div'),
     levelSpeed = document.querySelector('.speed');
 
 let setting = {
@@ -26,6 +26,8 @@ function selected () {
 }
 
 car.classList.add('car');
+stopLight.classList.add('stopLight');
+
 
 start.addEventListener('click', startGame);
 document.addEventListener('keydown', startRun);
@@ -49,10 +51,12 @@ function startGame(){
     score.style.display = 'block';
     levelSpeed.style.display = 'block';
     gameArea.innerHTML = '';
+    car.appendChild(stopLight);
+
     music.src = '3.mp3';
     music.load();
     music.play();
-    increaseSpeed()
+    increaseSpeed();
 
     for (let i = 0; i < getQuantityElements(100) + 1; i++) {
         const line = document.createElement('div');
@@ -87,21 +91,19 @@ function startGame(){
 
 function playGame (){
 
-
     if (setting.start === true) {
 
-
         let sp = setting.speed;
-        setting.score += setting.speed * 100;
-        score.innerHTML = 'SCORE:' + setting.speed;
-        levelSpeed.innerHTML = 'SPEED:' + sp.toFixed() * 10 + 'Km/h';
-        if (setting.speed*10 < 50){
+        setting.score += Math.floor(setting.speed);
+        score.innerHTML = 'SCORE:' + setting.score;
+        levelSpeed.innerHTML = 'SPEED:' + sp.toFixed() * 5 + 'Km/h';
+        if ((setting.speed * 5) <= 50){
             levelSpeed.style.color = 'green';
         }
-        if (50 < setting.speed*10 < 100 ){
+        if (50 <= setting.speed * 5){
             levelSpeed.style.color = 'orange';
         }
-        if (setting.speed*10 > 100 ){
+        if (setting.speed * 5 > 100 ){
             levelSpeed.style.color = 'red';
         }
 
@@ -119,13 +121,27 @@ function playGame (){
         if (keys.ArrowDown === true && setting.y < (gameArea.offsetHeight - car.offsetHeight)){
             setting.y = setting.y + setting.speed;
             setting.rotate = "rotate(0deg)";
+            stopLight.style.display = 'block';
+            stopLight.style.boxShadow = '0px 20px 20px 0 #f00';
+            stopLight.style.width =  50 + 'px';
+            stopLight.style.height = 15 + 'px';
+            stopLight.style.position = 'absolute';
+            stopLight.style.bottom = 16 + 'px';
+            stopLight.style.left = 0 + 'px';
+            // stopLight.style.display = 'none';
         }
 
         if (keys.ArrowUp && setting.y > 0) {
             setting.y = setting.y - setting.speed;
             setting.rotate = "rotate(0deg)";
+            stopLight.style.display = 'block';
+            stopLight.style.boxShadow = '0px 30px 16px 4px #00b9ff';
+            stopLight.style.width =  25 + 'px';
+            stopLight.style.height = 15 + 'px';
+            stopLight.style.left = 12 + 'px';
+            stopLight.style.position = 'absolute';
+            stopLight.style.bottom = 16 + 'px';
         }
-
     
         car.style.left = setting.x + 'px';
         car.style.top = setting.y + 'px';
@@ -133,18 +149,19 @@ function playGame (){
         requestAnimationFrame(playGame);
     }
 
-
 }
 
 function startRun(event){
     event.preventDefault();
     keys[event.key] = true;
+
 }
 
 function stopRun(event){
     event.preventDefault();
     keys[event.key] = false;
     setting.rotate = "rotate(0deg)";
+    stopLight.style.display = 'none';
 }
 
 function moveRoad (){

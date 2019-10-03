@@ -111,6 +111,10 @@ table {
     background: transparent url('./image/Mitsubishi.png') center /cover no-repeat;  
 }
 
+.stopLight {
+    display: none;
+}
+
 .gameArea {
     display: none;
     width: 300px;
@@ -130,29 +134,35 @@ table {
     left: 145px;
 }
 
-.score {
+.score, .speed {
     display: none;
     position: absolute;
     width:50%;
     top: 0;
     background: black;
-    padding: 1rem 0;
+    padding: 1.5rem;
     color: white;
-    text-align: left;
     font-family: sans-serif;
     font-weight: 500;
+    font-size: 40px;
+    z-index: 1;
 }
 
 .speed {
-    display: none;
-    position: absolute;
-    width: 50%;
     right: 0;
-    top: 0;
-    background: black;
-    padding: 1rem 0;
-    color: white;
     text-align: right;
-    font-family: sans-serif;
-    font-weight: 500;
+}
+
+.score {
+    text-align: left;
+}
+
+.buttonLeft {
+    width: 50px;
+    height: 50px;
+    border: 3px solid black;
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    cursor: pointer;
 }
